@@ -12,8 +12,8 @@ app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`)
 })
 
-app.get('/health', (request, response) => {
+app.get('/health', (req, res) => {
   // eslint-disable-next-line no-constant-condition
-  if (true) throw('erorr...')
-  response.send('ok')
+  if (true) throw('error...  ')
+  res.send('ok')
 })
