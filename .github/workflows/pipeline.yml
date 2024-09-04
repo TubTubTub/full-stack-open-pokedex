@@ -4,6 +4,9 @@ on:
   push:
     branch:
       - main
+  pull_request:
+    branch:
+      - main
 
 jobs:
   simple_deployment_pipeline:
