@@ -41,7 +41,7 @@ jobs:
         - name: github context
           env:
             SKIP: ${{ env.SKIP_CONDITION == 'true' }}
-          run: echo "$SKIP
+          run: echo "$SKIP"
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
