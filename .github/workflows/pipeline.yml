@@ -39,8 +39,7 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         - name: github context
-          env:
-          run: echo "$SKIP_CONDITION"
+          run: echo "$env.SKIP_CONDITION"
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
