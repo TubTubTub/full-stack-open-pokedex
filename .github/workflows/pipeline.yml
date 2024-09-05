@@ -23,7 +23,7 @@ jobs:
         run: npm install
       - name: Check style
         run: npm run eslint
-      - name: buld
+      - name: build
         run: npm run build
       - name: test
         run: npm run test
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1
+        uses: anothrNick/github-tag-action@777684df761b882a3f4f70db16ac70d8cc78d0ea
         if: ${{ github.event_name == 'push' && env.SKIP_CONDITION == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
