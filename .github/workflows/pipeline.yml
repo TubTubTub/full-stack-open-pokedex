@@ -35,26 +35,32 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
       - name: Success
         uses: Ilshidur/action-discord@e3927b5d7bb18e3ad2b1e334226af57c6391aaeb
         env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: "GitHub Bot Part 11"
           DISCORD_AVATAR: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
         with:
-          args: "A new version of Pokedex deployed to https://pdex.fly.dev by {{ github.triggering_actor }}"
+          args: "A new version of Pokedex deployed to https://pdex.fly.dev by {{ GITHUB_CONTEXT.triggering_actor }}"
+
       - name: Error
         uses: Ilshidur/action-discord@e3927b5d7bb18e3ad2b1e334226af57c6391aaeb
         env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: "GitHub Bot Part 11"
           DISCORD_AVATAR: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
         with:
-          args: "commit {{ github.event.commits.url}} by {{ github.triggering_actor }} broke the build :( "
+          args: "commit {{ GITHUB_CONTEXT.event.commits.url}} by {{ GITHUB_CONTEXT.triggering_actor }} broke the build :( "
+
       - name: Show GitHub context   
         env: 
           GITHUB_CONTEXT: ${{ toJson(github) }}   
         run: echo "$GITHUB_CONTEXT"
+
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
