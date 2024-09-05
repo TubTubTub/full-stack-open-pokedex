@@ -39,6 +39,8 @@ jobs:
         uses: Ilshidur/action-discord@e3927b5d7bb18e3ad2b1e334226af57c6391aaeb
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: "GitHub Bot Part 11"
+          DISCORD_AVATAR: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
         with:
           args: "A new version of Pokedex deployed"
       - name: Show GitHub context   
