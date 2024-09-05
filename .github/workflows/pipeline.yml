@@ -36,21 +36,17 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Success
-        uses: rjstone/discord-webhook-notify@v2
+        uses: Retr0-01/better-discord-notification@1.2.0
         if: ${{ success() }}
         with:
-          severity: info
-          text: A new version of Pokedex deployed
-          description: to succeed
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Failure
-        uses: rjstone/discord-webhook-notify@v2
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          msg-content: 'scueess wow'
+      - name: Failutre
+        uses: Retr0-01/better-discord-notification@1.2.0
         if: ${{ failure() }}
         with:
-          severity: error
-          text: Build failed
-          description: to failure
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK}}
+          msg-content: 'failed wow'
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
