@@ -36,13 +36,13 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Success
-        uses: Retr0-01/better-discord-notification@1.2.0
+        uses: Retr0-01/better-discord-notification@main
         if: ${{ success() }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           msg-content: 'scueess wow'
       - name: Failutre
-        uses: Retr0-01/better-discord-notification@1.2.0
+        uses: Retr0-01/better-discord-notification@main
         if: ${{ failure() }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK}}
