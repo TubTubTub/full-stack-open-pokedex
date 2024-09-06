@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name:
-        uses: jtalk/url-health-check@b716ccb6645355dd9fcce8002ce460e5474f7f00
+        uses: jtalk/url-health-check-action@b716ccb6645355dd9fcce8002ce460e5474f7f00
         with:
           url: https://full-stack-open-pokedex-ixmj.onrender.com/health
