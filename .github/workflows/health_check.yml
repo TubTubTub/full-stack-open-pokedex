@@ -3,6 +3,7 @@ name: Health Check
 on:
   schedule:
     - cron: '0 12 */1 * *'
+
 jobs:
   health_check:
     name: health_check
