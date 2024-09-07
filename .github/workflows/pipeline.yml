@@ -9,7 +9,7 @@ on:
       - main
   pull_request:
     branches: [main]
-    types: [opened, synchroni]
+    types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
@@ -24,7 +24,7 @@ jobs:
         run: npm install
       - name: Check style
         run: npm run eslint
-      - name: buld
+      - name: build
         run: npm run build
       - name: test
         run: npm run test
@@ -54,12 +54,7 @@ jobs:
           DISCORD_USERNAME: "GitHub Bot Part 11"
           DISCORD_AVATAR: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
         with:
-          args: "commit {{ EVENT_PAYLOAD.commits.0.url }} by { EVENT_PAYLOAD.repository.owner.name }} broke the build :( "
-
-      - name: Show GitHub context   
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }}   
-        run: echo "$GITHUB_CONTEXT"
+          args: "commit {{ EVENT_PAYLOAD.commits.0.url }} by {{ EVENT_PAYLOAD.repository.owner.name }} broke the build :( "
 
   tag_release:
     needs: [simple_deployment_pipeline]
